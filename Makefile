@@ -8,7 +8,7 @@ GOBUILD=CGO_ENABLED=0 go build -trimpath -ldflags '-X "github.com/Dreamacro/clas
 
 PLATFORM_LIST = \
 	linux-armv7 \
-	freebsd-armv7l
+	linux-armv7l
 
 WINDOWS_ARCH_LIST = \
 	windows-amd64
