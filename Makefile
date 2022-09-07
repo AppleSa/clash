@@ -7,33 +7,11 @@ GOBUILD=CGO_ENABLED=0 go build -trimpath -ldflags '-X "github.com/Dreamacro/clas
 		-w -s -buildid='
 
 PLATFORM_LIST = \
-	darwin-amd64 \
-	darwin-amd64-v3 \
-	darwin-arm64 \
-	linux-386 \
-	linux-amd64 \
-	linux-amd64-v3 \
-	linux-armv5 \
-	linux-armv6 \
 	linux-armv7 \
-	linux-armv8 \
-	linux-mips-softfloat \
-	linux-mips-hardfloat \
-	linux-mipsle-softfloat \
-	linux-mipsle-hardfloat \
-	linux-mips64 \
-	linux-mips64le \
-	freebsd-386 \
-	freebsd-amd64 \
-	freebsd-amd64-v3 \
-	freebsd-arm64
+	freebsd-armv7l
 
 WINDOWS_ARCH_LIST = \
-	windows-386 \
-	windows-amd64 \
-	windows-amd64-v3 \
-	windows-arm64 \
-	windows-arm32v7
+	windows-amd64
 
 all: linux-amd64 darwin-amd64 windows-amd64 # Most used
 
@@ -66,6 +44,9 @@ linux-armv6:
 
 linux-armv7:
 	GOARCH=arm GOOS=linux GOARM=7 $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
+
+linux-armv7l:
+	GOARCH=arm GOOS=linux GOARM=7 CC=arm-linux-gnueabi-gcc CXX=arm-linux-gnueabi-g++ $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
 
 linux-armv8:
 	GOARCH=arm64 GOOS=linux $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
