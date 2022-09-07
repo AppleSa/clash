@@ -7,8 +7,8 @@ GOBUILD=CGO_ENABLED=0 go build -trimpath -ldflags '-X "github.com/Dreamacro/clas
 		-w -s -buildid='
 
 PLATFORM_LIST = \
-	linux-armv7 \
-	linux-armv7l
+	linux-armv5 \
+	linux-armv5l
 
 WINDOWS_ARCH_LIST = \
 	windows-amd64
@@ -38,6 +38,9 @@ linux-amd64-v3:
 
 linux-armv5:
 	GOARCH=arm GOOS=linux GOARM=5 $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
+
+linux-armv5l:
+	GOARCH=arm GOOS=linux GOARM=5 CC=arm-linux-gnueabi-gcc CXX=arm-linux-gnueabi-g++ $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
 
 linux-armv6:
 	GOARCH=arm GOOS=linux GOARM=6 $(GOBUILD) -o $(BINDIR)/$(NAME)-$@
